@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Blog</title>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
+    <script src="https://kit.fontawesome.com/14d85fe3f5.js" crossorigin="anonymous"></script>
+    
+    <script src="//cdn.jsdelivr.net/npm/medium-editor@latest/dist/js/medium-editor.min.js"></script>
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/medium-editor@latest/dist/css/medium-editor.min.css" type="text/css" media="screen" charset="utf-8">
+
+    <link rel="stylesheet" href="{% static 'css/blog.css' %}">
+
+    <link href="https://fonts.googleapis.com/css2?family=Alata&family=Montserrat:wght@100&display=swap" rel="stylesheet">
+  </head>
+  <body class='loader'>
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light techfont custom-navbar">
+  <a class="navbar-brand bigbrand" href="{% url 'post_list' %}">My Blog</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="{% url 'about' %}">About<span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="https://www.github.com">Github</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="https://www.linkedin.com">LinkedIn</a>
+      </li>
+    </ul>
+    <ul class="nav navbar-nav navbar-right">
+      {% if user.is_authenticated %}
+      <li class="nav-item active">
+          <a class="nav-link" href="{% url 'post_new' %}">New Post</a>
+      </li>
+      <li class="nav-item active">
+          <a class="nav-link" href="{% url 'post_draft_list' %}">Drafts</a>
+      </li>
+      <li class="nav-item active">
+          <a class="nav-link" href="{% url 'logout' %}?next=/">Log Out</a>
+      </li>
+      <li>
+          <a class="nav-link">Welcome: {{user.username}}</a>
+      </li>
+      {% else %}
+        <li>
+          <a href="{% url 'login' %}"><i class="fas fa-user"></i></i></a>
+        </li>
+      {% endif %}
+    </ul>
+
+  </div>
+</nav>
+    <div class="content container">
+      <div class="row">
+        <div class="col-md-8">
+          <div class="blog_posts">
+            {% block content %}
+            {% endblock %}
+
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </body>
+</html>

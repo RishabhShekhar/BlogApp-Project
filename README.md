@@ -1,2 +1,2 @@
 # BlogApp-Project
-Repo for Django Deployment
+Repo for Blog Application

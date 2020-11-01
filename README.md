@@ -1,2 +1,2 @@
 # BlogApp-Project
-Repo for Blog Application
+Repository for Blog Application
